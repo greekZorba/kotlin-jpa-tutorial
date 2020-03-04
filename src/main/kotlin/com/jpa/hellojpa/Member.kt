@@ -9,5 +9,5 @@ import javax.persistence.Id
 data class Member (
         @Id
         val id: Long = 0,
-        val name: String = ""
+        var name: String = ""
 )
