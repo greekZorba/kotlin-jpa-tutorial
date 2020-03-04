@@ -13,8 +13,12 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        val member = Member(id=2, name="초콜렛")
-        entityManager.persist(member)
+        val findMember = entityManager.find(Member:: class.java, 1L)
+        println("findMember.id : ${findMember.id}")
+        println("findMember.name : ${findMember.name}")
+
+        // 자동으로 업데이트 됨
+        findMember.name = "jinhak.kim"
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
