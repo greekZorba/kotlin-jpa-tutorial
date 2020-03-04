@@ -12,11 +12,14 @@ fun main(args: Array<String>) {
     val tx = entityManager.transaction
     tx.begin()
 
-    val member = Member(id=1, name="조르바")
-
-    entityManager.persist(member)
-
-    tx.commit()
-    entityManager.close()
+    try {
+        val member = Member(id=2, name="초콜렛")
+        entityManager.persist(member)
+        tx.commit()
+    } catch (e: Exception) {
+        tx.rollback()
+    } finally {
+        entityManager.close()
+    }
     entityManagerFactory.close()
 }
