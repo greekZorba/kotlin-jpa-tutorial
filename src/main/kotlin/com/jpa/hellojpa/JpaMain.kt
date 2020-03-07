@@ -1,5 +1,7 @@
 package com.jpa.hellojpa
 
+import java.time.LocalDateTime
+import java.util.*
 import javax.persistence.Persistence
 
 class JpaMain
@@ -13,12 +15,10 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        val findMember = entityManager.find(Member:: class.java, 1L)
-        println("findMember.id : ${findMember.id}")
-        println("findMember.name : ${findMember.name}")
+        entityManager.persist(Member(10L, "zorba", 10, RoleType.ADMIN, Date(), Date(), "description"))
 
         // 자동으로 업데이트 됨
-        findMember.name = "jinhak.kim"
+//        findMember.name = "jinhak.kim"
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
