@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        entityManager.persist(Member(10L, "zorba", 10, RoleType.ADMIN, Date(), Date(), "description"))
+        entityManager.persist(Member(username = "zorba", age =10, roleType = RoleType.ADMIN, createDate = Date(), lastModifiedDate = Date(), description = "description"))
 
         // 자동으로 업데이트 됨
 //        findMember.name = "jinhak.kim"
