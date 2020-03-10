@@ -5,14 +5,15 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-@TableGenerator(
+@SequenceGenerator(
         name = "MEMBER_SEQ_GENERATOR",
-        table = "MY_SEQUENCES",
-        pkColumnValue = "MEMBER_SEQ", allocationSize = 1
+        sequenceName = "MEMBER_SEQ",
+        initialValue = 1,
+        allocationSize = 50
 )
 data class Member(
         @Id
-        @GeneratedValue(strategy = GenerationType.TABLE, generator = "MEMBER_SEQ_GENERATOR")
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ_GENERATOR")
         val id: Long = 0,
 
         @Column(name="name")
