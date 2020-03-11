@@ -1,5 +1,7 @@
 package jpabook.jpashop
 
+import jpabook.jpashop.domain.Member
+import jpabook.jpashop.domain.Team
 import javax.persistence.Persistence
 
 fun main() {
@@ -11,6 +13,17 @@ fun main() {
     tx.begin()
 
     try {
+        val team = Team()
+        entityManager.persist(team)
+
+        val member = Member(name="zorba", city="busan", team=team, street = "namcheon st", zipcode = "1234")
+        entityManager.persist(member)
+
+        entityManager.flush()
+        entityManager.clear()
+
+        val findMember = entityManager.find(member.javaClass, member.id)
+        println("findMember : $findMember")
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
