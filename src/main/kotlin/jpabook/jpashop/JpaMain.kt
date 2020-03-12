@@ -16,7 +16,7 @@ fun main() {
         val team = Team()
         entityManager.persist(team)
 
-        val member = Member(name="zorba", city="busan", team=team, street = "namcheon st", zipcode = "1234")
+        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", zipcode = "1234")
         entityManager.persist(member)
 
         entityManager.flush()
