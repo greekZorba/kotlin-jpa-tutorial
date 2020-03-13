@@ -13,7 +13,7 @@ data class Member(
 
         @ManyToOne
         @JoinColumn(name = "TEAM_ID")
-        val team: Team,
+        var team: Team,
 
         val street: String,
         val zipcode: String

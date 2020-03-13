@@ -14,13 +14,13 @@ fun main() {
 
     try {
         val team = Team()
+        team.name = "Team1"
         entityManager.persist(team)
 
         val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", zipcode = "1234")
         entityManager.persist(member)
 
-        entityManager.flush()
-        entityManager.clear()
+        team.addMember(member)
 
         val findMember = entityManager.find(member.javaClass, member.id)
         println("findMember : $findMember")

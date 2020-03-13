@@ -10,5 +10,13 @@ data class Team (
     val id: Long = 0,
 
     @OneToMany(mappedBy = "team")
-    val members: List<Member> = ArrayList()
-)
+    val members: MutableList<Member> = ArrayList(),
+
+    @Column(name = "NAME")
+    var name: String = ""
+) {
+    fun addMember(member: Member) {
+        member.team = this
+        members.add(member)
+    }
+}
