@@ -1,11 +1,12 @@
-package jpabook.jpashop
+package practice
 
-import jpabook.jpashop.domain.Member
-import jpabook.jpashop.domain.Team
+import practice.second.domain.Locker
+import practice.second.domain.Member
+import practice.second.domain.Team
 import javax.persistence.Persistence
 
 fun main() {
-    val entityManagerFactory = Persistence.createEntityManagerFactory("hello")
+    val entityManagerFactory = Persistence.createEntityManagerFactory("practice")
     val entityManager = entityManagerFactory.createEntityManager()
 
     // jpa는 트랜잭션 안에서 동작해야한다.
@@ -17,7 +18,7 @@ fun main() {
         team.name = "Team1"
         entityManager.persist(team)
 
-        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", zipcode = "1234")
+        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", locker = Locker(id= 0, name = "zorba"), zipcode = "1234")
         entityManager.persist(member)
 
         team.addMember(member)

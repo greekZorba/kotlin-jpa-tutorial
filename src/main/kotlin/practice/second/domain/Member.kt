@@ -15,6 +15,10 @@ data class Member(
         @JoinColumn(name = "TEAM_ID")
         var team: Team,
 
+        @OneToOne
+        @JoinColumn(name = "LOCKER_ID")
+        var locker: Locker,
+
         val street: String,
         val zipcode: String,
 
