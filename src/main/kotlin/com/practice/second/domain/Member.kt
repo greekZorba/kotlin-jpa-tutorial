@@ -1,4 +1,4 @@
-package practice.second.domain
+package com.practice.second.domain
 
 import javax.persistence.*
 
@@ -18,6 +18,10 @@ data class Member(
         @OneToOne
         @JoinColumn(name = "LOCKER_ID")
         var locker: Locker,
+
+        @ManyToMany
+        @JoinTable(name = "MEMBER_PRODUCT")
+        val products: List<Product> = ArrayList(),
 
         val street: String,
         val zipcode: String,

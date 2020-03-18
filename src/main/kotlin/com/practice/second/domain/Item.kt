@@ -1,4 +1,4 @@
-package practice.second.domain
+package com.practice.second.domain
 
 import javax.persistence.Column
 import javax.persistence.Entity

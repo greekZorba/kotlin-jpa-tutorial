@@ -1,4 +1,4 @@
-package practice.second.domain
+package com.practice.second.domain
 
 import java.time.LocalDateTime
 import javax.persistence.*

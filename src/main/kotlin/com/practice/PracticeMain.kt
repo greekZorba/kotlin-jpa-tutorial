@@ -1,11 +1,13 @@
-package practice
+package com.practice
 
-import practice.second.domain.Locker
-import practice.second.domain.Member
-import practice.second.domain.Team
+import com.practice.second.domain.Locker
+import com.practice.second.domain.Member
+import com.practice.second.domain.Team
 import javax.persistence.Persistence
 
-fun main() {
+class PracticeMain
+
+fun main(args: Array<String>) {
     val entityManagerFactory = Persistence.createEntityManagerFactory("practice")
     val entityManager = entityManagerFactory.createEntityManager()
 
@@ -18,13 +20,17 @@ fun main() {
         team.name = "Team1"
         entityManager.persist(team)
 
-        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", locker = Locker(id= 0, name = "zorba"), zipcode = "1234")
+        val locker = Locker(name = "zorba")
+        entityManager.persist(locker)
+
+        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", locker = locker, zipcode = "1234")
         entityManager.persist(member)
 
-        team.addMember(member)
 
-        val findMember = entityManager.find(member.javaClass, member.id)
-        println("findMember : $findMember")
+//        team.addMember(member)
+
+//        val findMember = entityManager.find(member.javaClass, member.id)
+//        println("findMember : $findMember")
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()

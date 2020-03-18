@@ -1,14 +1,12 @@
-package practice.second.domain
+package com.practice.second.domain
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 
 @Entity
-class Locker (
+class Product (
     @Id
     @GeneratedValue
-    val id: Long,
-
-    val name: String
+    val id: Long = 0
 )
