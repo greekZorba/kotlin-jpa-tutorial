@@ -18,16 +18,16 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        val item = Item(id = 1L, name = "zorba", price = 1000)
+        val item = Item(name = "zorba", price = 1000)
         val album = Album(artist = "IU")
         entityManager.persist(item)
         entityManager.persist(album)
 
-//        entityManager.flush()
-//        entityManager.clear()
+        entityManager.flush()
+        entityManager.clear()
 
-        val findItem = entityManager.find(Item().javaClass, 1L)
-        println(">>>>>>>>>> $findItem")
+        val findItem = entityManager.find(Item().javaClass, item.id)
+        println(">>>>>>>>>> ${findItem.name}")
 
         tx.commit()
     } catch (e: Exception) {
