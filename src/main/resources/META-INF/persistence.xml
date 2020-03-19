@@ -37,17 +37,20 @@
 <!--        <class>com.practice.second.domain.Product</class>-->
 <!--        <class>com.practice.second.domain.MemberProduct</class>-->
 
-        <class>com.practice.third.domain.Item</class>
-        <class>com.practice.third.domain.Locker</class>
-        <class>com.practice.third.domain.Order</class>
-        <class>com.practice.third.domain.OrderItem</class>
-        <class>com.practice.third.domain.OrderStatus</class>
-        <class>com.practice.third.domain.Team</class>
-        <class>com.practice.third.domain.Member</class>
-        <class>com.practice.third.domain.Product</class>
-        <class>com.practice.third.domain.MemberProduct</class>
-        <class>com.practice.third.domain.Category</class>
-        <class>com.practice.third.domain.Delivery</class>
+<!--        <class>com.practice.third.domain.Item</class>-->
+<!--        <class>com.practice.third.domain.Locker</class>-->
+<!--        <class>com.practice.third.domain.Order</class>-->
+<!--        <class>com.practice.third.domain.OrderItem</class>-->
+<!--        <class>com.practice.third.domain.OrderStatus</class>-->
+<!--        <class>com.practice.third.domain.Team</class>-->
+<!--        <class>com.practice.third.domain.Member</class>-->
+<!--        <class>com.practice.third.domain.Product</class>-->
+<!--        <class>com.practice.third.domain.MemberProduct</class>-->
+<!--        <class>com.practice.third.domain.Category</class>-->
+<!--        <class>com.practice.third.domain.Delivery</class>-->
+        <class>com.practice.inheritance.Item</class>
+        <class>com.practice.inheritance.Album</class>
+
         <properties>
             <!-- 필수 속성-->
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>

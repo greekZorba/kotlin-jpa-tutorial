@@ -1,6 +1,5 @@
 package com.practice.third.domain
 
-import com.practice.third.domain.Category
 import javax.persistence.*
 
 @Entity

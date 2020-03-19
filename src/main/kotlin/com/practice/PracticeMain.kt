@@ -1,5 +1,7 @@
 package com.practice
 
+import com.practice.inheritance.Album
+import com.practice.inheritance.Item
 import com.practice.second.domain.Locker
 import com.practice.second.domain.Member
 import com.practice.second.domain.Team
@@ -16,21 +18,17 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        val team = Team()
-        team.name = "Team1"
-        entityManager.persist(team)
+        val item = Item(id = 1L, name = "zorba", price = 1000)
+        val album = Album(artist = "IU")
+        entityManager.persist(item)
+        entityManager.persist(album)
 
-        val locker = Locker(name = "zorba")
-        entityManager.persist(locker)
+//        entityManager.flush()
+//        entityManager.clear()
 
-        val member = Member(name = "zorba", city = "busan", team = team, street = "namcheon st", locker = locker, zipcode = "1234")
-        entityManager.persist(member)
+        val findItem = entityManager.find(Item().javaClass, 1L)
+        println(">>>>>>>>>> $findItem")
 
-
-//        team.addMember(member)
-
-//        val findMember = entityManager.find(member.javaClass, member.id)
-//        println("findMember : $findMember")
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
