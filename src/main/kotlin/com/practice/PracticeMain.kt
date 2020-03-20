@@ -26,8 +26,10 @@ fun main(args: Array<String>) {
         entityManager.flush()
         entityManager.clear()
 
-        val findItem = entityManager.find(Item().javaClass, item.id)
+        val findItem = entityManager.find(Item::class.java, item.id)
         println(">>>>>>>>>> ${findItem.name}")
+        val findAlbum = entityManager.find(Album::class.java, item.id)
+        println(">>>>> ${findAlbum.artist}")
 
         tx.commit()
     } catch (e: Exception) {
