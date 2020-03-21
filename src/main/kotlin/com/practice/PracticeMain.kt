@@ -1,10 +1,11 @@
 package com.practice
 
+import com.practice.forth.Book
 import com.practice.inheritance.Album
+import com.practice.inheritance.BaseEntity
 import com.practice.inheritance.Item
-import com.practice.second.domain.Locker
-import com.practice.second.domain.Member
-import com.practice.second.domain.Team
+import com.practice.inheritance.Member
+import java.time.LocalDateTime
 import javax.persistence.Persistence
 
 class PracticeMain
@@ -18,18 +19,11 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
-        val item = Item(name = "zorba", price = 1000)
-        val album = Album(artist = "IU")
-        entityManager.persist(item)
-        entityManager.persist(album)
 
-        entityManager.flush()
-        entityManager.clear()
+        val book = Book(author = "Zorba", isbn = "d")
+        book.name = "zorba"
 
-        val findItem = entityManager.find(Item::class.java, item.id)
-        println(">>>>>>>>>> ${findItem.name}")
-        val findAlbum = entityManager.find(Album::class.java, item.id)
-        println(">>>>> ${findAlbum.artist}")
+        entityManager.persist(book)
 
         tx.commit()
     } catch (e: Exception) {

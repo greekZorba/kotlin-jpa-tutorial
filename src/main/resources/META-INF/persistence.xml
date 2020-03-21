@@ -48,8 +48,17 @@
 <!--        <class>com.practice.third.domain.MemberProduct</class>-->
 <!--        <class>com.practice.third.domain.Category</class>-->
 <!--        <class>com.practice.third.domain.Delivery</class>-->
-        <class>com.practice.inheritance.Item</class>
-        <class>com.practice.inheritance.Album</class>
+
+<!--        <class>com.practice.inheritance.Album</class>-->
+<!--        <class>com.practice.inheritance.Item</class>-->
+<!--        <class>com.practice.inheritance.BaseEntity</class>-->
+<!--        <class>com.practice.inheritance.Member</class>-->
+
+        <class>com.practice.forth.Album</class>
+        <class>com.practice.forth.Book</class>
+        <class>com.practice.forth.Item</class>
+        <class>com.practice.forth.Movie</class>
+        <class>com.practice.forth.BaseEntity</class>
 
         <properties>
             <!-- 필수 속성-->
