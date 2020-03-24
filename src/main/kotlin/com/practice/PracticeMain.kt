@@ -1,5 +1,7 @@
 package com.practice
 
+import com.practice.cascade.Child
+import com.practice.cascade.Parent
 import com.practice.forth.Book
 import com.practice.inheritance.Album
 import com.practice.inheritance.BaseEntity
@@ -10,7 +12,7 @@ import javax.persistence.Persistence
 
 class PracticeMain
 
-fun main(args: Array<String>) {
+fun main() {
     val entityManagerFactory = Persistence.createEntityManagerFactory("practice")
     val entityManager = entityManagerFactory.createEntityManager()
 
@@ -19,12 +21,20 @@ fun main(args: Array<String>) {
     tx.begin()
 
     try {
+        val child1 = Child(name = "zorba son")
+        val child2 = Child(name = "zorba daughter")
 
-        val book = Book(author = "Zorba", isbn = "d")
-        book.name = "zorba"
+        val parent = Parent(name = "zorba")
+        parent.addChild(child1)
+        parent.addChild(child2)
 
-        entityManager.persist(book)
+        entityManager.persist(parent)
 
+        entityManager.flush()
+        entityManager.clear()
+
+        val findParent = entityManager.find(Parent::class.java, parent.id)
+        findParent.children?.removeAt(0)
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
