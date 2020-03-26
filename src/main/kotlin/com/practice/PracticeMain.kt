@@ -1,12 +1,8 @@
 package com.practice
 
-import com.practice.cascade.Child
-import com.practice.cascade.Parent
-import com.practice.forth.Book
-import com.practice.inheritance.Album
-import com.practice.inheritance.BaseEntity
-import com.practice.inheritance.Item
-import com.practice.inheritance.Member
+import com.practice.embedded.Address
+import com.practice.embedded.Member
+import com.practice.embedded.Period
 import java.time.LocalDateTime
 import javax.persistence.Persistence
 
@@ -21,20 +17,16 @@ fun main() {
     tx.begin()
 
     try {
-        val child1 = Child(name = "zorba son")
-        val child2 = Child(name = "zorba daughter")
 
-        val parent = Parent(name = "zorba")
-        parent.addChild(child1)
-        parent.addChild(child2)
-
-        entityManager.persist(parent)
+        val member = Member(name = "zorba", workPeriod = Period(LocalDateTime.now(), LocalDateTime.now().plusHours(3)), homeAddress = Address(city = "busan", street = "namcheon", zipcode = "1234"))
+        entityManager.persist(member)
 
         entityManager.flush()
         entityManager.clear()
 
-        val findParent = entityManager.find(Parent::class.java, parent.id)
-        findParent.children?.removeAt(0)
+        val findMember = entityManager.find(Member::class.java, member.id)
+        println("isWorking now ? ${findMember.workPeriod.isWorking}")
+
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()

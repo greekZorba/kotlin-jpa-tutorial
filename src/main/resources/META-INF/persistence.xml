@@ -54,14 +54,18 @@
 <!--        <class>com.practice.inheritance.BaseEntity</class>-->
 <!--        <class>com.practice.inheritance.Member</class>-->
 
-        <class>com.practice.forth.Album</class>
-        <class>com.practice.forth.Book</class>
-        <class>com.practice.forth.Item</class>
-        <class>com.practice.forth.Movie</class>
-        <class>com.practice.forth.BaseEntity</class>
+<!--        <class>com.practice.forth.Album</class>-->
+<!--        <class>com.practice.forth.Book</class>-->
+<!--        <class>com.practice.forth.Item</class>-->
+<!--        <class>com.practice.forth.Movie</class>-->
+<!--        <class>com.practice.forth.BaseEntity</class>-->
 
-        <class>com.practice.cascade.Parent</class>
-        <class>com.practice.cascade.Child</class>
+<!--        <class>com.practice.cascade.Parent</class>-->
+<!--        <class>com.practice.cascade.Child</class>-->
+
+        <class>com.practice.embedded.Address</class>
+        <class>com.practice.embedded.Member</class>
+        <class>com.practice.embedded.Period</class>
 
         <properties>
             <!-- 필수 속성-->
