@@ -20,5 +20,5 @@ class Order(
         @JoinColumn(name = "DELIVERY_ID")
         val delivery: Delivery,
 
-        val orderDate: LocalDateTime,
+        val orderDate: LocalDateTime
 )
