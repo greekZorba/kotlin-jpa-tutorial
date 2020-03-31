@@ -18,14 +18,26 @@ fun main() {
 
     try {
 
-        val member = Member(name = "zorba", workPeriod = Period(LocalDateTime.now(), LocalDateTime.now().plusHours(3)), homeAddress = Address(city = "busan", street = "namcheon", zipcode = "1234"))
+        val favoriteFoods = setOf("pizza", "hamburger", "sandwich")
+        val addressHistory = listOf(
+            Address(city = "seoul", street = "gangnam", zipcode = "234"),
+            Address(city = "ulsan", street = "taehwa", zipcode = "6621")
+        )
+
+        val member = Member(
+            name = "zorba",
+            workPeriod = Period(LocalDateTime.now(), LocalDateTime.now().plusHours(3)),
+            homeAddress = Address(city = "busan", street = "namcheon", zipcode = "1234"),
+            favoriteFoods = favoriteFoods,
+            addressHistory = addressHistory
+        )
         entityManager.persist(member)
 
         entityManager.flush()
         entityManager.clear()
 
         val findMember = entityManager.find(Member::class.java, member.id)
-        println("isWorking now ? ${findMember.workPeriod.isWorking}")
+        println(">>>>>> address History ? ${findMember.addressHistory}")
 
         tx.commit()
     } catch (e: Exception) {

@@ -8,5 +8,5 @@ data class Period (
     var startDate: LocalDateTime,
     var endDate: LocalDateTime
 ) {
-    var isWorking = LocalDateTime.now().isBefore(this.startDate)
+    var isWorking = LocalDateTime.now().isAfter(this.startDate)
 }
