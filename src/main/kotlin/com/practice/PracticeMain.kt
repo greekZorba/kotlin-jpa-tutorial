@@ -17,28 +17,11 @@ fun main() {
     tx.begin()
 
     try {
-
-        val favoriteFoods = setOf("pizza", "hamburger", "sandwich")
-        val addressHistory = listOf(
-            Address(city = "seoul", street = "gangnam", zipcode = "234"),
-            Address(city = "ulsan", street = "taehwa", zipcode = "6621")
-        )
-
-        val member = Member(
-            name = "zorba",
-            workPeriod = Period(LocalDateTime.now(), LocalDateTime.now().plusHours(3)),
-            homeAddress = Address(city = "busan", street = "namcheon", zipcode = "1234"),
-            favoriteFoods = favoriteFoods,
-            addressHistory = addressHistory
-        )
-        entityManager.persist(member)
-
-        entityManager.flush()
-        entityManager.clear()
-
-        val findMember = entityManager.find(Member::class.java, member.id)
-        println(">>>>>> address History ? ${findMember.addressHistory}")
-
+        val results = entityManager.createQuery(
+            "select m from Member m where m.name like '%zorba%'",
+                     Member::class.java
+        ).resultList
+        println(results)
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
