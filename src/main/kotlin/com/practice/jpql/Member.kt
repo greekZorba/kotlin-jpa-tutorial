@@ -9,6 +9,7 @@ data class Member(
     @Column(name = "MEMBER_ID")
     val id: Long = 0,
     val name: String,
+    val age: Int,
 
     // 주소 Address
     @Embedded
