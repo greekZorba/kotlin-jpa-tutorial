@@ -1,8 +1,6 @@
 package com.practice
 
-import com.practice.embedded.Address
-import com.practice.embedded.Member
-import com.practice.embedded.Period
+import com.practice.jpql.Member
 import java.time.LocalDateTime
 import javax.persistence.Persistence
 
@@ -17,11 +15,19 @@ fun main() {
     tx.begin()
 
     try {
-        val results = entityManager.createQuery(
-            "select m from Member m where m.name like '%zorba%'",
-                     Member::class.java
-        ).resultList
-        println(results)
+
+        entityManager.persist(Member(name = "zorba"))
+
+        entityManager.flush()
+        entityManager.clear()
+
+        // Query 타입
+        val query = entityManager.createQuery(
+            "select m.id, m.name from Member m where m.name = :name"
+        ).setParameter("name", "zorba")
+
+        val result = query.singleResult
+        println(result.toString())
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()

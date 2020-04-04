@@ -63,9 +63,11 @@
 <!--        <class>com.practice.cascade.Parent</class>-->
 <!--        <class>com.practice.cascade.Child</class>-->
 
-        <class>com.practice.embedded.Address</class>
-        <class>com.practice.embedded.Member</class>
-        <class>com.practice.embedded.Period</class>
+<!--        <class>com.practice.embedded.Address</class>-->
+<!--        <class>com.practice.embedded.Member</class>-->
+<!--        <class>com.practice.embedded.Period</class>-->
+
+        <class>com.practice.jpql.Member</class>
 
         <properties>
             <!-- 필수 속성-->
