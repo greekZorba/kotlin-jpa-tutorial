@@ -68,6 +68,8 @@
 <!--        <class>com.practice.embedded.Period</class>-->
 
         <class>com.practice.jpql.Member</class>
+        <class>com.practice.jpql.Address</class>
+        <class>com.practice.jpql.Team</class>
 
         <properties>
             <!-- 필수 속성-->
