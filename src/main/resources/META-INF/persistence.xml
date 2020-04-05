@@ -67,9 +67,13 @@
 <!--        <class>com.practice.embedded.Member</class>-->
 <!--        <class>com.practice.embedded.Period</class>-->
 
-        <class>com.practice.jpql.Member</class>
-        <class>com.practice.jpql.Address</class>
-        <class>com.practice.jpql.Team</class>
+<!--        <class>com.practice.jpql.Member</class>-->
+<!--        <class>com.practice.jpql.Address</class>-->
+<!--        <class>com.practice.jpql.Team</class>-->
+
+        <class>com.practice.paging.Member</class>
+        <class>com.practice.paging.Address</class>
+        <class>com.practice.paging.Team</class>
 
         <properties>
             <!-- 필수 속성-->

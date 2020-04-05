@@ -1,9 +1,8 @@
 package com.practice
 
-import com.practice.jpql.Address
-import com.practice.jpql.Member
-import com.practice.jpql.MemberDto
-import com.practice.jpql.Team
+import com.practice.paging.Address
+import com.practice.paging.Member
+import com.practice.paging.Team
 import java.time.LocalDateTime
 import javax.persistence.Persistence
 
@@ -18,22 +17,28 @@ fun main() {
     tx.begin()
 
     try {
-        val address = Address(city = "busan", street = "namcheon", zipcode = "1234")
         val team = Team(name = "development")
         entityManager.persist(team)
-        entityManager.persist(Member(name = "zorba", age = 30, homeAddress = address, team = team))
+
+        for (i in 0 until 30) {
+            val address = Address(city = "busan$i", street = "namcheon$i", zipcode = "1234$i")
+            entityManager.persist(Member(name = "zorba$i", age = 30+i, homeAddress = address, team = team))
+        }
 
         entityManager.flush()
         entityManager.clear()
 
-        // Query 타입
-        val query = entityManager.createQuery(
-            "select new com.practice.jpql.MemberDto(m.name, m.age) from Member m where m.name = :name",
-            MemberDto::class.java
-        ).setParameter("name", "zorba")
+        val members = entityManager.createQuery(
+            "select m from Member m order by m.age desc",
+            Member::class.java
+        ).setFirstResult(1)
+            .setMaxResults(20)
+            .resultList
 
-        val result = query.singleResult
-        println(result.toString())
+        for(member in members) {
+            println("결과 값 : ${member.age}")
+        }
+
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
