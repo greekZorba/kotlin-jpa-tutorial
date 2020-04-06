@@ -3,7 +3,6 @@ package com.practice
 import com.practice.paging.Address
 import com.practice.paging.Member
 import com.practice.paging.Team
-import java.time.LocalDateTime
 import javax.persistence.Persistence
 
 class PracticeMain
@@ -17,28 +16,29 @@ fun main() {
     tx.begin()
 
     try {
-        val team = Team(name = "development")
+        val team = Team(name = "zorba1")
+        val team1 = Team(name = "team")
         entityManager.persist(team)
+        entityManager.persist(team1)
 
         for (i in 0 until 30) {
             val address = Address(city = "busan$i", street = "namcheon$i", zipcode = "1234$i")
             entityManager.persist(Member(name = "zorba$i", age = 30+i, homeAddress = address, team = team))
         }
 
+        entityManager.persist(Member(name = "zorba", age = 30, homeAddress = Address(city = "busan", street = "namcheon", zipcode = "123"), team = team1))
+
         entityManager.flush()
         entityManager.clear()
 
         val members = entityManager.createQuery(
-            "select m from Member m order by m.age desc",
+            "select m from Member m left join m.team t on t.name = 'team'",
             Member::class.java
-        ).setFirstResult(1)
-            .setMaxResults(20)
-            .resultList
+        ).resultList
 
-        for(member in members) {
-            println("결과 값 : ${member.age}")
+        for (member in members) {
+            println(">>>>> $member")
         }
-
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()
