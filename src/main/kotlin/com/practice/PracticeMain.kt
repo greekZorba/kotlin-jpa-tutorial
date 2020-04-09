@@ -31,12 +31,12 @@ fun main() {
         entityManager.flush()
         entityManager.clear()
 
-        val members = entityManager.createQuery(
-            "select m from Member m left join m.team t on t.name = 'team'",
-            Member::class.java
+        val memberNames = entityManager.createQuery(
+            "select function('group_concat', m.name) from Member m",
+            String::class.java
         ).resultList
 
-        for (member in members) {
+        for (member in memberNames) {
             println(">>>>> $member")
         }
         tx.commit()
