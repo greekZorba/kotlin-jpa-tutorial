@@ -16,29 +16,63 @@ fun main() {
     tx.begin()
 
     try {
-        val team = Team(name = "zorba1")
-        val team1 = Team(name = "team")
-        entityManager.persist(team)
-        entityManager.persist(team1)
+        val teamA = Team(name = "zorba1")
+        val teamB = Team(name = "zorba2")
+        val teamC = Team(name = "zorba3")
+        entityManager.persist(teamA)
+        entityManager.persist(teamB)
+        entityManager.persist(teamC)
 
         for (i in 0 until 30) {
             val address = Address(city = "busan$i", street = "namcheon$i", zipcode = "1234$i")
-            entityManager.persist(Member(name = "zorba$i", age = 30+i, homeAddress = address, team = team))
-        }
+            when {
+                i < 10 -> {
+                    val member = Member(
+                        name = "zorba$i",
+                        age = 30 + i,
+                        homeAddress = address,
+                        team = teamA
+                    )
+                    entityManager.persist(member)
+                    teamA.addMember(member)
+                }
+                i < 20 -> {
+                    val member = Member(
+                        name = "zorba$i",
+                        age = 30 + i,
+                        homeAddress = address,
+                        team = teamB
+                    )
+                    entityManager.persist(member)
+                    teamB.addMember(member)
+                }
+                else -> {
+                    val member = Member(
+                        name = "zorba$i",
+                        age = 30 + i,
+                        homeAddress = address,
+                        team = teamC
+                    )
+                    entityManager.persist(member)
+                    teamC.addMember(member)
+                }
+            }
 
-        entityManager.persist(Member(name = "zorba", age = 30, homeAddress = Address(city = "busan", street = "namcheon", zipcode = "123"), team = team1))
+
+        }
 
         entityManager.flush()
         entityManager.clear()
 
-        val memberNames = entityManager.createQuery(
-            "select function('group_concat', m.name) from Member m",
-            String::class.java
+        val teams = entityManager.createQuery(
+            "select distinct t from Team t join fetch t.members",
+            Team::class.java
         ).resultList
 
-        for (member in memberNames) {
-            println(">>>>> $member")
-        }
+        println(">>>>>>>> ${teams.size}")
+//        for (team in teams) {
+//            println(">>>>> ${team}")
+//        }
         tx.commit()
     } catch (e: Exception) {
         tx.rollback()

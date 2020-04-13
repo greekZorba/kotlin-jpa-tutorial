@@ -17,5 +17,5 @@ data class Member(
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
-    val team: Team
+    var team: Team
 )
