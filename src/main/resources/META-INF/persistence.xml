@@ -71,9 +71,9 @@
 <!--        <class>com.practice.jpql.Address</class>-->
 <!--        <class>com.practice.jpql.Team</class>-->
 
-        <class>com.practice.paging.Member</class>
-        <class>com.practice.paging.Address</class>
-        <class>com.practice.paging.Team</class>
+        <class>com.practice.namedQuery.Member</class>
+        <class>com.practice.namedQuery.Address</class>
+        <class>com.practice.namedQuery.Team</class>
 
         <properties>
             <!-- 필수 속성-->

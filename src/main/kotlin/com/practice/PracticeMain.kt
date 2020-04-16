@@ -1,8 +1,8 @@
 package com.practice
 
-import com.practice.paging.Address
-import com.practice.paging.Member
-import com.practice.paging.Team
+import com.practice.namedQuery.Address
+import com.practice.namedQuery.Member
+import com.practice.namedQuery.Team
 import javax.persistence.Persistence
 
 class PracticeMain
@@ -64,12 +64,13 @@ fun main() {
         entityManager.flush()
         entityManager.clear()
 
-        val teams = entityManager.createQuery(
-            "select distinct t from Team t join fetch t.members",
-            Team::class.java
-        ).resultList
+        val members = entityManager.createNamedQuery("Member.findByName", Member::class.java)
+            .setParameter("name", "zorba10")
+            .resultList
 
-        println(">>>>>>>> ${teams.size}")
+        for (member in members) {
+            println("member name : $member")
+        }
 //        for (team in teams) {
 //            println(">>>>> ${team}")
 //        }
