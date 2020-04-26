@@ -3,4 +3,4 @@
 
 ---
 ## 강의 내용
-- lesson 패키지 아래로 마크다운으로 정리할 계획
+- [강의 내용 요약 리스트](https://github.com/greekZorba/kotlin-jpa-tutorial/tree/develop/src/main/kotlin/com/jpa/lesson)
